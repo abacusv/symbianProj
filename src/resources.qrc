@@ -1,0 +1,25 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">  
+    <file>icons/btn_aye.png</file>
+    <file>icons/btn_aye_on.png</file>
+    <file>icons/btn_exit.png</file>
+    <file>icons/btn_exit_on.png</file>
+    <file>icons/btn_updatemap.png</file>
+    <file>icons/btn_updatemap_on.png</file>
+    <file>icons/background_noshadow.png</file>
+    <file>icons/message_background_noshadow.png</file>
+    <file>icons/qww-logo_app_noshadow.png</file>
+    <file>icons/rolling-compass_noshadow.png</file>
+    <file>icons/map_noshadow.png</file>
+    <file>icons/qww-logo_splash_noshadow.png</file>
+    <file>icons/close.png</file>
+    <file>icons/close_on.png</file>
+	<file>icons/btn_friendslocation.png</file>
+    <file>icons/btn_friendslocation_on.png</file>
+    <file>icons/btn_mylocation.png</file>
+    <file>icons/btn_mylocation_on.png</file>
+    <file>icons/messagebottle.png</file>
+    <file>icons/messagebottle_on.png</file>
+    <file>icons/arrow_down.png</file>
+</qresource>
+</RCC>

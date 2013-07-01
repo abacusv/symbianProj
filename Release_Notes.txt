@@ -1,0 +1,200 @@
+Qt: QWhoWhere Example v1.2
+==========================
+
+This Qt example application demonstrates how to use the Qt Mobility APIs. The 
+Qt Mobility project delivers a set of new APIs to Qt, offering features that 
+are well known from the mobile device world, particularly mobile phones. This 
+example uses the following Qt Mobility APIs: Location, Messaging, and 
+Contacts. The Ovi Maps Rendering API is used for searching map images. 
+
+The example application shows your position on a map. You can send your 
+location or ask a friend (from your contacts list) for his or her current 
+location using short message service (SMS) messages. You can then see your 
+friend’s location and your position on the map.
+
+This application has been tested on Symbian^3 and Maemo (Nokia N900 PR1.3)
+devices with Qt 4.7.0/4.7.1 and Qt Mobility 1.0.2/1.1.0 release.
+
+-------------------------------------------------------------------------------
+
+PREREQUISITES
+
+- Qt basics
+- Qt Graphics View Framework
+- Qt Animation Framework
+
+-------------------------------------------------------------------------------
+
+IMPORTANT FILES/CLASSES
+
+- Mainwindow.h: QMainWindow of the example
+- Message.h: Class that handles SMS message sending and listening to incoming 
+  messages
+- ContactsDialog.h: Custom dialog that shows contacts
+- QueryDialog.h: Custom query dialog
+- FetchMap.h: Uses Ovi Maps Rendering API
+- PictureItem.h: QGraphicsPixmapItem that has animation features
+- Button.h: Custom button derived from QGraphicsWidget
+
+Important classes: QWebView, QMessageService, QMessageManager, QMessageId, 
+QNetworkSession, QGeoPositionInfoSource, QNetworkConfigManager, 
+QNetworkSession, QGeoPositionInfo, QContact, QContactManager, 
+QNetworkAccessManager, QPropertyAnimation, QGraphicsPixmapItem.
+
+-------------------------------------------------------------------------------
+
+REQUIRED CAPABILITIES
+
+Messaging is disabled (the MESSAGING_ENABLED flag is disabled) by default and 
+the application can be self-signed. When Messaging is enabled, the application 
+cannot be signed with a self-sign certificate. For testing purposes, it can be 
+signed at the Open Signed Online service: 
+https://www.symbiansigned.com/app/page/public/openSignedOnline.do
+
+Alternatively, the application can be signed against the developer 
+certificate, which is also known as Open Signed Offline signing.
+
+From .pro file:
+
+# Self-signing capabilities
+TARGET.CAPABILITY += NetworkServices \
+    ReadUserData \
+    WriteUserData \
+    LocalServices \
+    UserEnvironment \
+    Location
+
+# Additional capabilities that needs Open Signed Online signing
+# QtMobility Messaging module needs these
+#DEFINES += MESSAGING_ENABLED
+#TARGET.CAPABILITY += ReadDeviceData WriteDeviceData
+
+!contains(DEFINES,MESSAGING_ENABLED) {
+    warning(Messaging disabled!)
+}
+
+-------------------------------------------------------------------------------
+
+KNOWN ISSUES
+
+Messaging is broken in Qt Mobility 1.0.2 and is therefore disabled in Maemo.
+
+-------------------------------------------------------------------------------
+
+RUNNING THE EXAMPLE
+
+Your current location is searched upon application startup, and the location 
+is shown on the map. You can send your location, or ask a friend (from the 
+contacts list) for his or her location by SMS. The friend must have the same 
+application running on his or her device.
+
+If you change your location, you can refresh it from the 'Update map' menu 
+item. This is necessary because the global positioning system (GPS) will be 
+closed after getting your position.
+
+-------------------------------------------------------------------------------
+
+
+BUILD & INSTALLATION INSTRUCTIONS
+---------------------------------
+
+Preparations
+~~~~~~~~~~~~
+Check that you have the latest Qt/Nokia Qt SDK installed in the development 
+environment and on the device.
+
+Build & installation instructions using Nokia Qt SDK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Open qwhowhere.pro:
+   File > Open File or Project, select qwhowhere.pro.
+
+2. Select target(s), for example 'Qt for Symbian Devices (Nokia Qt SDK)', and 
+   press the Finish button.
+
+3. Press the Run button to build the project and create the qwhowhere.sis 
+   Symbian install package. Application is installed to the device.
+
+(4.) If you create unsigned SIS that uses Messaging module, that have to sign using Open Signed Online
+   https://www.symbiansigned.com/app/page/public/openSignedOnline.do
+
+
+Setting up Qt for Maemo on the Nokia N900 device
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Enable root access, if missing:
+1. Applications menu > More > App manager > Menu > Application catalogues 
+   > Maemo Extras Devel > Untick Disabled > Save
+2. Applications menu > More > App manager > Download > Menu > Search 
+   > Type rootsh > Search > rootsh
+
+Qt is included in the device’s Nokia Applications repository:
+1. Applications menu > More > X Terminal
+  sudo gainroot
+  apt-get install libqt4-gui
+  
+
+Installing and running the application on a Maemo device
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Enable root access, if missing:
+1. Applications menu > More > App manager > Menu > Application catalogues 
+   > Maemo Extras Devel > Untick Disabled > Save
+2. Applications menu > More > App manager > Download > Menu > Search 
+   > Type rootsh > Search > rootsh
+
+Install the application from the X Terminal:
+1. Applications menu > More > X Terminal
+  sudo gainroot
+  dpkg -i path/to/qwhowhere.deb
+  
+2. Start the application from the QWhoWhere icon on the Nokia N900 device.
+
+-------------------------------------------------------------------------------
+
+COMPATIBILITY
+
+- Nokia Qt SDK 1.1
+- Qt Mobility 1.1.0
+- Qt Mobility 1.0.2 (Maemo)
+
+Tested on: 
+- Nokia N8-00
+- Nokia E7-00
+- Nokia N900 (PR1.3 firmware)
+
+Developed with:
+- Nokia Qt SDK 1.1
+
+
+-------------------------------------------------------------------------------
+
+VERSION HISTORY
+
+1.2 The application now uses the Ovi Maps Rendering API. QWebKit removed and 
+    Qt 4.7 check done.
+
+1.1 Updated to use Qt Mobility 1.0.2, now supporting both Symbian and Maemo. 
+    New custom UI. Map images now loaded by Qt WebKit. 
+
+1.0 First version
+
+-------------------------------------------------------------------------------
+
+RELATED DOCUMENTATION
+
+New Qt APIs Beta - Mobility Project:
+http://qt.nokia.com/developer/new-qt-apis
+http://labs.trolltech.com/page/Projects/QtMobility
+
+Nokia Qt SDK Wiki:
+http://wiki.forum.nokia.com/index.php/Nokia_Qt_SDK
+
+Download Qt:
+http://qt.nokia.com/downloads
+
+Complete Guide To Symbian Signed:
+http://developer.symbian.org/wiki/index.php/Complete_Guide_To_Symbian_Signed
+
+Symbian Open Signed Online:
+https://www.symbiansigned.com/app/page/public/openSignedOnline.do
